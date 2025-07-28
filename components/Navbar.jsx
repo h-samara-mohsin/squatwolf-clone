@@ -1,35 +1,69 @@
 "use client";
-import { useContext } from "react";
+
 import { CartContext } from "@/context/CartContext";
 import Link from "next/link";
+import { useContext } from "react";
+import { FaSearch, FaRegHeart, FaShoppingBag } from "react-icons/fa";
+import { IoIosArrowDown } from "react-icons/io";
+import Logo from "@/components/Logo";
 
 export default function Navbar() {
-  const { cartItems, toggleCart } = useContext(CartContext);
-
-  // Calculate total quantity of all items in the cart
-  const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const { toggleCart } = useContext(CartContext);
 
   return (
-    <nav className="flex items-center justify-between p-4 shadow-md">
-      <Link href="/" className="font-bold text-xl">Squatwolf</Link>
-      {/* <Link href="/" className="flex items-center gap-2">
-        <img
-          src="https://squatwolf.com/cdn/shop/files/Squatwolf-Logo_White.svg"
-          alt="Squatwolf Logo"
-          className="h-6 w-auto"
-        />
-      </Link> */}
-      <div className="flex items-center gap-4">
-        <a href="/collections/gym-tshirts-men">Gym T-Shirts</a>
-        <button onClick={toggleCart} aria-label="View cart" className="relative">
-          🛒
-          {totalQuantity > 0 && (
-            <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs px-2 py-0.5 rounded-full">
-              {totalQuantity}
-            </span>
-          )}
-        </button>
+    <header className="border-b border-gray-200 text-sm font-medium text-black">
+      {/* 🔝 Top Bar */}
+      <div className="flex justify-between items-center px-6 py-2 bg-gray-50 text-xs tracking-wide">
+        {/* Left side */}
+        <div className="space-x-6">
+          <span className="hover:underline cursor-pointer">
+            CORE COLLECTION NEW DROP
+          </span>
+          <span className="hover:underline cursor-pointer">LIVE NOW &gt;</span>
+        </div>
+
+        {/* Right side */}
+        <div className="flex items-center space-x-6">
+          <span className="flex items-center gap-1 cursor-pointer hover:underline">
+            ENGLISH <IoIosArrowDown />
+          </span>
+          <span className="flex items-center gap-1 cursor-pointer hover:underline">
+            PAKISTAN <IoIosArrowDown />
+          </span>
+        </div>
       </div>
-    </nav>
+
+      {/* 🔻 Main Navbar */}
+      <nav className="w-full border-b border-gray-200 px-6 py-4">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          {/* Left - Logo */}
+          <Link href="/">
+            <Logo className="h-5 w-8 cursor-pointer text-black" />
+          </Link>
+
+          {/* Center - Nav Links */}
+          <div className="hidden md:flex items-center space-x-8 text-sm font-medium">
+            <Link href="#">MEN</Link>
+            <Link href="#">WOMEN</Link>
+            <Link href="#">ACCESSORIES</Link>
+            <Link href="#">SALE</Link>
+            <Link href="#">EXPLORE</Link>
+            <FaSearch className="cursor-pointer" />
+          </div>
+
+          {/* Right - Icons */}
+          <div className="flex items-center space-x-6 text-sm font-medium">
+            <Link href="#">HELP</Link>
+            <Link href="#">PACKVIP</Link>
+            <Link href="#">LOG IN / SIGN UP</Link>
+            <FaRegHeart className="cursor-pointer" />
+            <FaShoppingBag
+              className="cursor-pointer text-xl"
+              onClick={toggleCart}
+            />
+          </div>
+        </div>
+      </nav>
+    </header>
   );
 }

@@ -2,6 +2,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { CartProvider } from "@/context/CartContext";
 import CartDrawer from "@/components/CartDrawer"; 
+import NavbarWrapper from "@/components/NavbarWrapper";
 
 export const metadata = {
   title: "Squatwolf Store",
@@ -13,7 +14,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <CartProvider>
-          <Navbar />
+          {/* <Navbar /> */}
+          <NavbarWrapper />
           <CartDrawer />
           {children}
         </CartProvider>

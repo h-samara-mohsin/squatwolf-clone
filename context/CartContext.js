@@ -42,14 +42,17 @@ export function CartProvider({ children }) {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const updateQuantity = (id, quantity) => {
-    setCartItems((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, quantity } : item
-      )
-    );
+    const updateQuantity = (id, quantity) => {
+    if (quantity <= 0) {
+      removeFromCart(id); // ✅ auto-remove when quantity is zero or less
+    } else {
+      setCartItems((prev) =>
+        prev.map((item) =>
+          item.id === id ? { ...item, quantity } : item
+        )
+      );
+    }
   };
-
   return (
     <CartContext.Provider
       value={{

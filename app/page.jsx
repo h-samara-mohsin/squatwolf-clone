@@ -1,4 +1,3 @@
-// app/page.js
 import { shopifyFetch } from "@/lib/shopify";
 import { HOMEPAGE_COLLECTION_QUERY } from "@/lib/queries";
 import Link from "next/link";
