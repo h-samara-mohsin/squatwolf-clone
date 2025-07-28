@@ -18,8 +18,11 @@ export const metadata = {
 };
 
 export default async function HomePage() {
-  const data = await shopifyFetch(HOMEPAGE_COLLECTION_QUERY);
-  const products = data.collection.products.edges;
+  const res = await shopifyFetch(HOMEPAGE_COLLECTION_QUERY);
+  const products = res?.data?.collection?.products?.edges || [];
+
+//   const data = await shopifyFetch(HOMEPAGE_COLLECTION_QUERY);
+// console.log("🧠 Shopify Query Response:", JSON.stringify(data, null, 2));
 
   return (
     <main className="p-6">
