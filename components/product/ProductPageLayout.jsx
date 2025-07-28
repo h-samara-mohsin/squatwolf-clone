@@ -47,6 +47,9 @@ const handleAddToCart = () => {
   });
 };
 
+const shopTheLookItems = JSON.parse(product?.metafields?.shop_the_look?.value || "[]");
+
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-2 gap-12">
       {/* Left: Image */}
